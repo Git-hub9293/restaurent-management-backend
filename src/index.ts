@@ -5,6 +5,7 @@ import cors from "cors";
 import userRoute from "./routes/user/user";
 import branchRoute from "./routes/branch/branch";
 import authRoute from "./routes/auth/auth";
+import orderRoute from "./routes/order/order";
 import { VerifyTokenMiddleware } from "./middlewares/verifyToken";
 dotenv.config();
 
@@ -24,6 +25,7 @@ const port = process.env.PORT || 3001;
 app.use("/v1", authRoute);
 app.use("/v1", VerifyTokenMiddleware, userRoute);
 app.use("/v1", VerifyTokenMiddleware, branchRoute);
+app.use("/v1", VerifyTokenMiddleware, orderRoute);
 
 app.get("/health-check", (req: Request, res: Response) => {
   res.send("Server is running successfully");
